@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LeitorComponent } from './leitor/leitor.component';
 
-const routes: Routes = [];
+const ROUTES: Routes = [
+  { path: 'leitor', component: LeitorComponent },
+  { path: '', redirectTo: 'leitor', pathMatch: 'full' },
+  { path: '/', redirectTo: 'leitor', pathMatch: 'full' }
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+];
+
+export const routing = RouterModule.forRoot(ROUTES, { useHash: true });

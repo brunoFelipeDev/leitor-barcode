@@ -1,16 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { LeitorComponent } from './leitor/leitor.component';
+import { routing } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LeitorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    routing,
+    ZXingScannerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
