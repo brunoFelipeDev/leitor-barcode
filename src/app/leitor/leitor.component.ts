@@ -38,7 +38,7 @@ export class LeitorComponent implements OnInit {
       // }
     });
 
-    this.scanner.camerasNotFound.subscribe(() => this.hasDevices = false);
+    this.scanner.camerasNotFound.subscribe(() => this.hasDevices = true);
     this.scanner.scanComplete.subscribe((result: Result) => this.qrResult = result);
     this.scanner.permissionResponse.subscribe((perm: boolean) => this.hasPermission = perm);
   }

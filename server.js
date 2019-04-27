@@ -4,13 +4,13 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(path.join(__dirname + 'dist')));
+app.use(express.static(path.join(__dirname + 'dist/leitor-barcode')));
 
 app.all('*', function (req, res) {
     res.status(200).sendfile(
-        path.join(__dirname, 'dist', 'index.html'));
+        path.join(__dirname, 'dist/leitor-barcode', 'index.html'));
 })
 
 app.listen(app.get('port'), function () {
-    console.log("não executando na porta");
+    console.log("node executando na porta", app.get('port'));
 })
