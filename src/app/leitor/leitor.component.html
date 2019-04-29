@@ -1,75 +1,43 @@
-<div class="scanner-shell" [hidden]="!hasDevices">
-
+<div class="scanner-shell" [hidden]="!existeDispositivoDeCamera">
   <header>
-    <select (change)="onDeviceSelectChange($event.target.value)">
-      <option value="" [selected]="!currentDevice">No Device Selected</option>
-      <option *ngFor="let device of availableDevices" [value]="device.deviceId" [selected]="currentDevice && device.deviceId === currentDevice.deviceId">{{device.label}}</option>
+    <select (change)="onDispositivoDeCameraSelecionado($event.target.value)">
+      <option value="" [selected]="!dispositivoCamera">Nenhum dispositivo selecionado</option>
+      <option *ngFor="let device of camerasDisponiveis" [value]="device.deviceId"
+        [selected]="dispositivoCamera && device.deviceId === dispositivoCamera.deviceId">{{device.label}}</option>
     </select>
   </header>
 
-  <zxing-scanner #scanner [device]="currentDevice" (scanSuccess)="handleQrCodeResult($event)" [formats]="['EAN_13', 'CODE_128', 'QR_CODE']" [tryHarder]="true"></zxing-scanner>
+  <zxing-scanner #scanner [autofocusEnabled]="true" [device]="dispositivoCamera" [scannerEnabled] ="habilitarLeitor"
+    (scanSuccess)="onSucessoLerCodigoBarras($event)" [formats]="['EAN_13']" [tryHarder]="true"></zxing-scanner>
 
-  <section class="results" *ngIf="qrResultString">
-    <small>Result</small>
-    <strong>{{ qrResultString }}</strong>
+  <section class="results" *ngIf="codigoDeBarras">
+    <small>Resultado:</small>
+    <strong>{{ codigoDeBarras }}</strong>
   </section>
-
 </div>
 
-<ng-container *ngIf="hasPermission === undefined">
-
-  <h2>Waiting for permissions.</h2>
-
+<ng-container *ngIf="temPermissao === undefined">
+  <h2>Esperando por permissões.</h2>
   <blockquote>
-    If your device does not has cameras, no permissions will be asked.
+    Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada.
   </blockquote>
-
 </ng-container>
 
-<ng-container *ngIf="hasPermission === false">
-
-  <h2>You denied the camera permission, we can't scan anything without it. 😪</h2>
-
+<ng-container *ngIf="temPermissao === false">
+  <h2>Você negou a permissão da câmera, não podemos digitalizar nada sem ela. 😪</h2>
 </ng-container>
 
-<ng-container *ngIf="hasDevices === undefined">
+<ng-container *ngIf="existeDispositivoDeCamera === undefined">
 
-  <h2>Couldn't check for devices.</h2>
-
+  <h2>Não foi possível verificar se há dispositivos.</h2>
   <blockquote>
-    This may be caused by some security error.
+    Isso pode ser causado por algum erro de segurança.
   </blockquote>
-
 </ng-container>
 
-<ng-container *ngIf="hasDevices === false">
-
-  <h2>No devices were found.</h2>
-
+<ng-container *ngIf="existeDispositivoDeCamera === false">
+  <h2>Nenhum dispositivo de câmera foi encontrado.</h2>
   <blockquote>
-    I believe your device has no media devices attached to.
+    Acredito que seu dispositivo não possui dispositivos de mídia conectados.
   </blockquote>
-
 </ng-container>
-
-<footer>
-  <table class="table-scanner-state">
-    <thead>
-      <tr>
-        <th>Status</th>
-        <th>Property</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{ stateToEmoji(hasDevices) }}</td>
-        <td>Devices</td>
-      </tr>
-      <tr>
-        <td>{{ stateToEmoji(hasPermission) }}</td>
-        <td>Permissions</td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="ng-version">Angular version: {{ ngVersion }}</p>
-</footer>

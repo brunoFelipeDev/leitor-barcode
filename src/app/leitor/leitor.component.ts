@@ -1,6 +1,7 @@
 import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { Result } from '@zxing/library';
+import { Produto } from './produto.model';
 
 @Component({
   selector: 'app-leitor',
@@ -9,68 +10,68 @@ import { Result } from '@zxing/library';
 })
 export class LeitorComponent implements OnInit {
 
-  ngVersion = VERSION.full;
-
   @ViewChild('scanner')
   scanner: ZXingScannerComponent;
 
-  hasDevices: boolean;
-  hasPermission: boolean;
-  qrResultString: string;
+  habilitarLeitor: boolean = true;
+
+  listaEstoque: Array<Produto> = new Array<Produto>();
+
+  existeDispositivoDeCamera: boolean;
+  temPermissao: boolean;
+  codigoDeBarras: string;
   qrResult: Result;
 
-  availableDevices: MediaDeviceInfo[];
-  currentDevice: MediaDeviceInfo;
+  camerasDisponiveis: MediaDeviceInfo[];
+  dispositivoCamera: MediaDeviceInfo;
 
   ngOnInit(): void {
 
-    this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
-      this.hasDevices = true;
-      this.availableDevices = devices;
+    this.scanner.camerasFound.subscribe((cameras: MediaDeviceInfo[]) => {
+      this.existeDispositivoDeCamera = true;
+      this.camerasDisponiveis = cameras;
 
-      // selects the devices's back camera by default
-      // for (const device of devices) {
-      //     if (/back|rear|environment/gi.test(device.label)) {
-      //         this.scanner.changeDevice(device);
-      //         this.currentDevice = device;
-      //         break;
-      //     }
-      // }
+      for (const camera of cameras) {
+        if (/back|rear|environment/gi.test(camera.label)) {
+          this.scanner.changeDevice(camera);
+          this.dispositivoCamera = camera;
+          break;
+        }
+        if (camera != undefined && camera != null) {
+         // this.dispositivoCamera = camera;
+        }
+      }
     });
 
-    this.scanner.camerasNotFound.subscribe(() => this.hasDevices = true);
+    this.scanner.camerasNotFound.subscribe(() => this.existeDispositivoDeCamera = false);
     this.scanner.scanComplete.subscribe((result: Result) => this.qrResult = result);
-    this.scanner.permissionResponse.subscribe((perm: boolean) => this.hasPermission = perm);
+    this.scanner.permissionResponse.subscribe((perm: boolean) => this.temPermissao = perm);
   }
 
   displayCameras(cameras: MediaDeviceInfo[]) {
-    console.debug('Devices: ', cameras);
-    this.availableDevices = cameras;
+    console.log('Cameras: ', cameras);
+    this.camerasDisponiveis = cameras;
   }
 
-  handleQrCodeResult(resultString: string) {
-    console.debug('Result: ', resultString);
-    this.qrResultString = resultString;
+  onSucessoLerCodigoBarras(resultString: string) {
+    this.codigoDeBarras = resultString;
+    this.playAudio();
+    this.listaEstoque.push(new Produto(resultString, 1));
+
+    console.log(this.listaEstoque);
   }
 
-  onDeviceSelectChange(selectedValue: string) {
-    console.debug('Selection changed: ', selectedValue);
-    this.currentDevice = this.scanner.getDeviceById(selectedValue);
+  onDispositivoDeCameraSelecionado(selectedValue: string) {
+    console.log('Selection changed: ', selectedValue);
+    if (selectedValue == '')
+      this.codigoDeBarras = '';
+    this.dispositivoCamera = this.scanner.getDeviceById(selectedValue);
   }
 
-  stateToEmoji(state: boolean): string {
-
-    const states = {
-      // not checked
-      undefined: '❔',
-      // failed to check
-      null: '⭕',
-      // success
-      true: '✔',
-      // can't touch that
-      false: '❌'
-    };
-
-    return states['' + state];
+  playAudio() {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/barcode-beep.mp3";
+    audio.load();
+    audio.play();
   }
 }
