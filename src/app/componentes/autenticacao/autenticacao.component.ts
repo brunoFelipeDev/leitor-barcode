@@ -16,8 +16,6 @@ export class AutenticacaoComponent implements OnInit {
   }
 
   logar() {
-    if (this.cnpj == '99999999999')
-      this.router.navigate(['leitor/' + this.cnpj]);
+    this.router.navigate(['leitor/' + this.cnpj]);
   }
-
 }
