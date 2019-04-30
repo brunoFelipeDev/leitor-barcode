@@ -8,16 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
 
-  ngOnInit() {
-    window.scrollTo(0, 1);
-    this.openFullscreen();
-  }
-
-  openFullscreen() {
-    var elem = document.documentElement;
-
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    }
-  }
-  }
+}

@@ -1,10 +1,40 @@
+<script language="jscript">
+    function toggleFullScreen() {
+        if (!document.fullscreenElement &&    // alternative standard method
+            !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {  // current working methods
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
+    }
+
+    toggleFullScreen();
+</script>
+
 <div class="container-fluid tela-full">
     <div class="logo">
         <img width="180px;" src="../../../assets/imagens/logo-unifar.png">
     </div>
     <div class="sticky-top login">
         <input type="tel" mask="000.000.000-00" [(ngModel)]="cnpj" class="form-control" placeholder="Digite seu CNPJ">
-        <button type="button" class="btn btn-outline-primary btn-block botaoConfirmar" (click)="logar()">Entrar</button>
+        <button type="button" class="btn btn-outline-primary btn-block botaoConfirmar"
+            (click)="logar();toggleFullScreen();">Entrar</button>
     </div>
     <div class="fixed-bottom rodape">Syncode Sistemas e Tecnologia</div>
 </div>
