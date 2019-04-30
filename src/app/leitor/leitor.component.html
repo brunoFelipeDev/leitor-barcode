@@ -1,5 +1,5 @@
 <div class="scanner-shell" [hidden]="!existeDispositivoDeCamera">
-  <header>
+  <header *ngIf="!temCameraTraseira">
     <select (change)="onDispositivoDeCameraSelecionado($event.target.value)">
       <option value="" [selected]="!dispositivoCamera">Nenhum dispositivo selecionado</option>
       <option *ngFor="let device of camerasDisponiveis" [value]="device.deviceId"
@@ -7,8 +7,8 @@
     </select>
   </header>
 
-  <zxing-scanner #scanner [autofocusEnabled]="true" [device]="dispositivoCamera" [scannerEnabled] ="habilitarLeitor"
-    (scanSuccess)="onSucessoLerCodigoBarras($event)" [formats]="['EAN_13']" [tryHarder]="true"></zxing-scanner>
+  <zxing-scanner #scanner start="true" [device]="dispositivoCamera" (scanSuccess)="onSucessoLerCodigoBarras($event)"
+    [formats]="['EAN_13']" [tryHarder]="true"></zxing-scanner>
 
   <section class="results" *ngIf="codigoDeBarras">
     <small>Resultado:</small>

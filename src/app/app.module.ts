@@ -10,18 +10,22 @@ import { routing } from './app-routing.module';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { AutenticacaoComponent } from './componentes/autenticacao/autenticacao.component';
+import {NgxMaskModule} from 'ngx-mask'
 
 @NgModule({
   declarations: [
     AppComponent,
     LeitorComponent,
-    NavbarComponent
+    NavbarComponent,
+    AutenticacaoComponent
   ],
   imports: [
     BrowserModule,
     routing,
     ZXingScannerModule,
     FormsModule,
+    NgxMaskModule.forRoot(),
     CollapseModule.forRoot(),
     AlertModule.forRoot()
   ],
