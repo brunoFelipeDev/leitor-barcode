@@ -20,4 +20,4 @@ export class AppComponent {
       elem.requestFullscreen();
     }
   }
-}
+  }
