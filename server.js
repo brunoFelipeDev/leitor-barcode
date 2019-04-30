@@ -1,16 +1,16 @@
-var path = require('path');
-var express = require('express');
-var app = express();
+//Install express server
+const express = require('express');
+const path = require('path');
 
-app.set('port', (process.env.PORT || 5000));
+const app = express();
 
-app.use(express.static(path.join(__dirname + 'dist/leitor-barcode')));
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/leitor-barcode'));
 
-app.all('*', function (req, res) {
-    res.status(200).sendfile(
-        path.join(__dirname, 'dist/leitor-barcode', 'index.html'));
-})
+app.get('/*', function (req, res) {
 
-app.listen(app.get('port'), function () {
-    console.log("node executando na porta", app.get('port'));
-})
+    res.sendFile(path.join(__dirname + '/dist/leitor-barcode/index.html'));
+});
+
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
