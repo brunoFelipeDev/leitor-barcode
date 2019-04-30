@@ -18,4 +18,6 @@ export class AutenticacaoComponent implements OnInit {
   logar() {
     this.router.navigate(['leitor/' + this.cnpj]);
   }
+
+
 }
