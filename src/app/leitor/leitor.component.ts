@@ -34,7 +34,6 @@ export class LeitorComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
-
     this.route.params.subscribe(params => {
       if (params['cnpj'] == '99999999999') {
         this.scanner.camerasFound.subscribe((cameras: MediaDeviceInfo[]) => {
@@ -82,6 +81,7 @@ export class LeitorComponent implements OnInit {
       console.log(this.listaEstoque);
       setTimeout(() => {
         this.podeLerCodigoBarras = true;
+        this.codigoDeBarras = null;
       }, 4000);
 
     }
