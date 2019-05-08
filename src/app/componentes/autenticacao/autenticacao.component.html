@@ -2,7 +2,7 @@
     <div class="logo">
         <img width="180px;" src="../../../assets/imagens/logo-unifar.png">
     </div>
-    <div class="sticky-top login">
+    <div class="sticky-top login" (keydown.enter)="logar()">
         <input type="tel" mask="000.000.000-00" [(ngModel)]="cnpj" class="form-control" placeholder="Digite seu CNPJ">
         <button type="button" class="btn btn-outline-primary btn-block botaoConfirmar" (click)="logar()">Entrar</button>
     </div>
