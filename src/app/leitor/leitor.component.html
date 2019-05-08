@@ -7,7 +7,7 @@
     </select>
   </header>
 
-  <zxing-scanner style="position: absolute;top: 28%;" #scanner start="true" [device]="dispositivoCamera" (scanSuccess)="onSucessoLerCodigoBarras($event)"
+  <zxing-scanner class="teste" #scanner start="true" [device]="dispositivoCamera" (scanSuccess)="onSucessoLerCodigoBarras($event)"
     [formats]="['EAN_13']" [tryHarder]="true"></zxing-scanner>
 
   <section class="results fixed-bottom" *ngIf="codigoDeBarras">
