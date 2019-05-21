@@ -103,7 +103,7 @@ export class LeitorComponent implements OnInit {
     audio.play();
   }
 
-  private _toggleSidebar() {
+  _toggleSidebar() {
     this._opened = !this._opened;
   }
 
