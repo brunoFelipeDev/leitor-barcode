@@ -31,12 +31,10 @@ zxing-scanner {
   
   .results {
     bottom: 0;
-    padding: 15px;
     background: #0a6fc2;
     color: #fff;
   
     small {
-      font-weight: bolder;
       display: block;
       font-size: 80%;
       margin: -.6em 0 0 0;
@@ -56,3 +54,35 @@ zxing-scanner {
       }
     }
   }
+
+  .botaoListaProdutos {
+    background-color: #3B86FF !important;
+    color: white;
+    margin-bottom: 16px;
+    margin-top: 21px;
+    height: 61px;
+    bottom: 0;
+    font-size: 17px;
+}
+
+.codigoDeBarras {
+  background-color: #3B86FF;
+  height: 77px;
+  padding-left: 21px; 
+  padding-top: 10px;
+  width: 100%;
+
+  small {
+    display: block;
+    font-size: 11px;
+  }
+  strong {
+    font-size: 22px;
+    font-weight: 400;
+  }
+}
+
+.botaoListaProdutos:hover {
+    background-color: transparent;
+    color: white;
+}

@@ -9,12 +9,18 @@
 
   <zxing-scanner #scanner [autofocusEnabled]="false" start="true" [device]="dispositivoCamera"
     (scanSuccess)="onSucessoLerCodigoBarras($event)" [formats]="['EAN_13']" [tryHarder]="true"></zxing-scanner>
-
-  <section class="results fixed-bottom" *ngIf="codigoDeBarras">
-    <small>Resultado:</small>
-    <strong>{{ codigoDeBarras }}</strong>
-  </section>
-
+  <div class="fixed-bottom">
+    <div class="codigoDeBarras" *ngIf="codigoDeBarras">
+      <small>Código do Produto:</small>
+      <strong>{{ codigoDeBarras }}</strong>
+    </div>
+    <div style="padding-right: 16px; padding-left: 18px;">
+      <button type="button" class="btn btn-outline-primary btn-block botaoListaProdutos" (click)="logar()">Veja a lista
+        de produtos
+        <i class="zmdi zmdi-long-arrow-down zmdi-hc-lg" style="padding-left: 10px;"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
 <ng-container *ngIf="temPermissao === undefined">
