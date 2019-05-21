@@ -82,7 +82,7 @@ export class LeitorComponent implements OnInit {
       setTimeout(() => {
         this.podeLerCodigoBarras = true;
         this.codigoDeBarras = null;
-      }, 4000);
+      }, 3000);
 
     }
   }
