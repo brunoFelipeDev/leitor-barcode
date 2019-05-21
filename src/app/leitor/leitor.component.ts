@@ -17,7 +17,7 @@ export class LeitorComponent implements OnInit {
 
   podeLerCodigoBarras = true;
 
-  private _opened: boolean = false;
+  _opened: boolean = false;
 
   habilitarLeitor: boolean = true;
 
