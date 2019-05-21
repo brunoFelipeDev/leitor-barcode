@@ -11,7 +11,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { AutenticacaoComponent } from './componentes/autenticacao/autenticacao.component';
-import {NgxMaskModule} from 'ngx-mask'
+import {NgxMaskModule} from 'ngx-mask';
+import { SidebarModule } from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {NgxMaskModule} from 'ngx-mask'
     routing,
     ZXingScannerModule,
     FormsModule,
+    SidebarModule.forRoot(),
     NgxMaskModule.forRoot(),
     CollapseModule.forRoot(),
     AlertModule.forRoot()

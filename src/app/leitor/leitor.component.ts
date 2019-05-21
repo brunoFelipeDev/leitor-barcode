@@ -17,6 +17,8 @@ export class LeitorComponent implements OnInit {
 
   podeLerCodigoBarras = true;
 
+  private _opened: boolean = false;
+
   habilitarLeitor: boolean = true;
 
   listaEstoque: Array<Produto> = new Array<Produto>();
@@ -99,6 +101,10 @@ export class LeitorComponent implements OnInit {
     audio.src = "../../../assets/audio/barcode-beep.mp3";
     audio.load();
     audio.play();
+  }
+
+  private _toggleSidebar() {
+    this._opened = !this._opened;
   }
 
 }

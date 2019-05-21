@@ -1,3 +1,13 @@
+<ng-sidebar-container style="position: absolute;">
+
+  <ng-sidebar [(opened)]="_opened" class="sidebar">
+    <div style="height: 100%; width: 315px; background-color: white">Sidebar contents</div>
+  </ng-sidebar>
+
+</ng-sidebar-container>
+
+
+
 <div class="scanner-shell" [hidden]="!existeDispositivoDeCamera">
   <header *ngIf="!temCameraTraseira">
     <select (change)="onDispositivoDeCameraSelecionado($event.target.value)">
@@ -15,7 +25,8 @@
       <strong>{{ codigoDeBarras }}</strong>
     </div>
     <div style="padding-right: 16px; padding-left: 18px;">
-      <button type="button" class="btn btn-outline-primary btn-block botaoListaProdutos">Veja a lista
+      <button type="button" class="btn btn-outline-primary btn-block botaoListaProdutos" (click)="_toggleSidebar()">Veja
+        a lista
         de produtos
         <i class="zmdi zmdi-long-arrow-down zmdi-hc-lg" style="padding-left: 10px;"></i>
       </button>
