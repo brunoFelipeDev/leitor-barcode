@@ -13,6 +13,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { AutenticacaoComponent } from './componentes/autenticacao/autenticacao.component';
 import {NgxMaskModule} from 'ngx-mask';
 import { SidebarModule } from 'ng-sidebar';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SidebarModule } from 'ng-sidebar';
     SidebarModule.forRoot(),
     NgxMaskModule.forRoot(),
     CollapseModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

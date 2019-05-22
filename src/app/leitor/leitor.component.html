@@ -1,10 +1,11 @@
-<ng-sidebar-container style="position: absolute;">
+<!--<ng-sidebar-container style="position: absolute;">
 
   <ng-sidebar [(opened)]="_opened" class="sidebar">
     <div style="height: 100%; width: 315px; background-color: white">Sidebar contents</div>
   </ng-sidebar>
 
 </ng-sidebar-container>
+-->
 
 
 
@@ -25,7 +26,7 @@
       <strong>{{ codigoDeBarras }}</strong>
     </div>
     <div style="padding-right: 16px; padding-left: 18px;">
-      <button type="button" class="btn btn-outline-primary btn-block botaoListaProdutos" (click)="_toggleSidebar()">Veja
+      <button type="button" class="btn btn-outline-primary btn-block botaoListaProdutos" (click)="lgModal.show()">Veja
         a lista
         de produtos
         <i class="zmdi zmdi-long-arrow-down zmdi-hc-lg" style="padding-left: 10px;"></i>
@@ -59,3 +60,25 @@
     Acredito que seu dispositivo não possui dispositivos de mídia conectados.
   </blockquote>
 </ng-container>
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #3B86FF; height: 71px;">
+        <p id="dialog-sizes-name1" class="modal-title pull-left"
+          style="font-size: 23px; padding-left: 6px; font-weight: 300;">Lista de produtos</p>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true" style="color: white;">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="padding-left: 10px;">
+          <div style="font-size: 17px; color: #808080 !important; font-weight: 400;">SAL DE FRUTAS ENO 5g - <span
+              style="color: #3B86FF !important; font-weight: bold;">10 UN.</span></div>
+          <p style="color: #3B86FF; font-size: 16px; font-weight: 500;"> 7896015511166</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
