@@ -1,8 +1,7 @@
-import { Component, VERSION, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { Result } from '@zxing/library';
 import { Produto } from './produto.model';
-import { Observable, Subscriber } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 

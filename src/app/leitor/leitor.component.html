@@ -61,7 +61,6 @@
   </blockquote>
 </ng-container>
 
-
 <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -73,10 +72,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <div style="padding-left: 10px;">
+        <div style="padding-left: 10px;" *ngFor="let lista of listaEstoque">
           <div style="font-size: 17px; color: #808080 !important; font-weight: 400;">SAL DE FRUTAS ENO 5g - <span
-              style="color: #3B86FF !important; font-weight: bold;">10 UN.</span></div>
-          <p style="color: #3B86FF; font-size: 16px; font-weight: 500;"> 7896015511166</p>
+              style="color: #3B86FF !important; font-weight: bold;">{{lista.qtdEstoque}} UN.</span></div>
+          <p style="color: #3B86FF; font-size: 16px; font-weight: 500;"> {{lista.codigoDeBarras}}</p>
         </div>
       </div>
     </div>
